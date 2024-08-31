@@ -2,9 +2,12 @@ import express from 'express';
 import pino from 'pino-http';
 import cors from 'cors';
 
+import authRouter from './routers/auth.js';
 import contactRouter from './routers/contacts.js';
+
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import { errorHandler } from './middlewares/errorHandler.js';
+import cookieParser from 'cookie-parser';
 
 export const setupServer = () => {
   const PORT = Number(process.env.PORT);
@@ -21,7 +24,9 @@ export const setupServer = () => {
     }),
   );
   app.use(cors());
+  app.use(cookieParser());
 
+  app.use('/auth', authRouter);
   app.use('/contacts', contactRouter);
 
   app.use(notFoundHandler);

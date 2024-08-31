@@ -14,7 +14,7 @@ export const addContactSchema = Joi.object({
     'any.required': 'Phone number is required',
   }),
   email: Joi.string().email().required().messages({
-    'string.base': 'Email number should be a string',
+    'string.base': 'Email should be a string',
     'string.email': 'Must be a real email',
     'any.required': 'Email is required',
   }),
