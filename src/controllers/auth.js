@@ -51,7 +51,11 @@ export const refreshUserController = async (req, res) => {
     expires: new Date(Date.now() + THIRTY_DAYS),
   });
 
-  res.send({ status: 200, message: 'Successfully refreshed a session!' });
+  res.send({
+    status: 200,
+    message: 'Successfully refreshed a session!',
+    data: { accessToken: session.accessToken },
+  });
 };
 
 export const logoutUserController = async (req, res) => {
